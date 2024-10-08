@@ -1,7 +1,6 @@
-import 'package:chat_app/core/constantsss/assets_images.dart';
+import 'package:chat_app/core/constants/assets_images.dart';
 import 'package:chat_app/core/themes/color_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class Chats extends StatelessWidget {
   final String name;
@@ -57,7 +56,7 @@ class Chats extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         "# $phone",
