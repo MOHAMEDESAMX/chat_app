@@ -17,9 +17,9 @@ abstract class Style {
     fontWeight: FontWeight.w600,
     color: ColorsApp.primaryColor,
   );
-  static const textstyle20 =TextStyle(
+  static const textStyle20 =TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
-    color: ColorsApp.secondaryColor,
+    color: ColorsApp.primaryColor,
   );
 }

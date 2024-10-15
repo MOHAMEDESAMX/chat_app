@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(
           "whatsUp",
-          style: Style.textstyle20.copyWith(fontSize: 30),
+          style: Style.textStyle20.copyWith(fontSize: 30),
         ),
         actions: [
           IconButton(
