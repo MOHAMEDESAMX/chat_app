@@ -8,18 +8,22 @@ class SignupButtom extends StatelessWidget {
       required this.emailController,
       required this.phoneController,
       required this.passwordController,
-      required this.onSuccess});
+      required this.onSuccess, required this.globalKey});
 
   final TextEditingController nameController;
   final TextEditingController emailController;
   final TextEditingController phoneController;
   final TextEditingController passwordController;
   final VoidCallback onSuccess;
+  final GlobalKey<FormState> globalKey;
   @override
   Widget build(BuildContext context) {
     return CustomButtom(
         onPressed: () {
-          if (nameController.text.length < 5) {
+          if(globalKey.currentState!.validate()){
+            onSuccess();
+          }
+          else if (nameController.text.length < 5) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text("Name is too short \n at least 5 letters"),
@@ -52,8 +56,6 @@ class SignupButtom extends StatelessWidget {
                 duration: Duration(seconds: 3),
               ),
             );
-          } else {
-            onSuccess();
           }
         },
         text: "sign up");

@@ -16,7 +16,7 @@ class SignupBody extends StatefulWidget {
   State<SignupBody> createState() => _SignupBodyState();
 }
 
-GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
 TextEditingController nameController = TextEditingController();
@@ -25,6 +25,7 @@ TextEditingController phoneController = TextEditingController();
 bool isNotVisible = true;
 
 class _SignupBodyState extends State<SignupBody> {
+  final globalKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -75,13 +76,12 @@ class _SignupBodyState extends State<SignupBody> {
                 emailController: emailController,
                 nameController: nameController,
                 phoneController: phoneController,
+                globalKey: globalKey,
                 onSuccess: () {
-                  if (globalKey.currentState!.validate()) {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const HomePage()));
-                  }
                 },
               ),
               const SizedBox(

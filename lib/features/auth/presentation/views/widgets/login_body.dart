@@ -57,17 +57,16 @@ class _LoginBodyState extends State<LoginBody> {
                 height: 20,
               ),
               LoginButtom(
-                passwordController: passwordController,
-                emailController: emailController,
-                onSuccess: () {
-                  if (globalKey.currentState!.validate()) {
+                  emailController: emailController,
+                  passwordController: passwordController,
+                  globalKey: globalKey,
+                  onSuccess: () {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const HomePage()));
-                  }
-                },
-              ),
+                  },
+                  ),
               const SizedBox(
                 height: 20,
               ),
