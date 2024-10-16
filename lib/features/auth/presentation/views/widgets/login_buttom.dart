@@ -1,4 +1,3 @@
-
 import 'package:chat_app/core/shared_widgets/custom_buttom.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +6,8 @@ class LoginButtom extends StatelessWidget {
       {super.key,
       required this.emailController,
       required this.passwordController,
-      required this.onSuccess, required this.globalKey});
+      required this.onSuccess,
+      required this.globalKey});
 
   final TextEditingController emailController;
   final TextEditingController passwordController;
@@ -17,9 +17,7 @@ class LoginButtom extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomButtom(
         onPressed: () {
-          if (globalKey.currentState!.validate()) {
-            onSuccess();
-          } else if (!emailController.text.contains("@")) {
+          if (!emailController.text.contains("@")) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text("Email is not valid"),
@@ -35,8 +33,8 @@ class LoginButtom extends StatelessWidget {
                 duration: Duration(seconds: 3),
               ),
             );
-          } else {
-
+          }else if (globalKey.currentState!.validate()) {
+            onSuccess();
           }
         },
         text: "Log in");
