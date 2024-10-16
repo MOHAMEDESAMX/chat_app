@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:chat_app/core/constants/assets_images.dart';
 import 'package:chat_app/core/themes/color_app.dart';
 import 'package:chat_app/core/themes/style.dart';
-import 'package:chat_app/features/home/presentation/views/home.dart';
+import 'package:chat_app/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-        const Duration(seconds: 300),
+        const Duration(seconds: 3),
         () => Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (BuildContext context) => const HomePage())));
   }
@@ -27,13 +27,18 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-          child: Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(AssetsImages.logo,width: 150,height: 150,),
+            Image.asset(
+              AssetsImages.logo,
+              width: 150,
+              height: 150,
+            ),
             Text(
               "whatsUp",
-              style: Style.textStyle24.copyWith(color: ColorsApp.secondaryColor),
+              style:
+                  Style.textStyle24.copyWith(color: ColorsApp.secondaryColor),
             ),
             const SizedBox(height: 100),
             Text(
