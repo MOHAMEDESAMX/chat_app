@@ -1,11 +1,23 @@
+import 'dart:async';
+
 import 'package:chat_app/core/themes/style.dart';
 import 'package:flutter/material.dart';
+import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 
-class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
+class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
   const HomeAppBar({
     super.key,
+    required this.sideMenuKey,
   });
+  final GlobalKey<SideMenuState> sideMenuKey;
+  @override
+  State<HomeAppBar> createState() => _HomeAppBarState();
 
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 1);
+}
+
+class _HomeAppBarState extends State<HomeAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -26,11 +38,22 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               Icons.search,
               color: Colors.black,
             )),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
+        IconButton(
+            onPressed: () {
+              final state = widget.sideMenuKey.currentState;
+              if (state!.isOpened) {
+                Timer(
+                  const Duration(seconds: 30),
+                  () {
+                    state.closeSideMenu();
+                  },
+                );
+              } else {
+                state.openSideMenu();
+              }
+            },
+            icon: const Icon(Icons.more_vert))
       ],
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 1);
 }
