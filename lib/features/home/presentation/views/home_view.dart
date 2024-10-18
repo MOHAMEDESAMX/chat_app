@@ -2,6 +2,7 @@ import 'package:chat_app/core/themes/color_app.dart';
 import 'package:chat_app/features/auth/presentation/views/otp_page.dart';
 import 'package:chat_app/features/home/presentation/views/widgets/home_app_bar.dart';
 import 'package:chat_app/features/home/presentation/views/widgets/home_body.dart';
+import 'package:chat_app/features/status/presentation/views/status_view.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,9 +12,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int myIndex=0;
-  List<Widget> pagesList=[
+  int myIndex = 0;
+  List<Widget> pagesList = [
     const HomeBody(),
+    const StatusView(),
     const OtpView(),
     //StatusBody(),
     //CallsBody(),
@@ -24,9 +26,9 @@ class _HomePageState extends State<HomePage> {
       appBar: const HomeAppBar(),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
-        onTap: (index){
+        onTap: (index) {
           setState(() {
-            myIndex=index;
+            myIndex = index;
           });
         },
         currentIndex: myIndex,

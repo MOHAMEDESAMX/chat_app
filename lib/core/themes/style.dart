@@ -22,4 +22,8 @@ abstract class Style {
     fontWeight: FontWeight.bold,
     color: ColorsApp.secondaryColor,
   );
+  static TextStyle textStyle18=const TextStyle(
+    fontSize: 18,
+    color: Colors.black38,
+  );
 }
