@@ -12,7 +12,7 @@ class SideMenuView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const SizedBox(
           height: 80,
@@ -24,17 +24,26 @@ class SideMenuView extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        const Text(
-          "Hello,",
-          style: TextStyle(color: Colors.white38, fontSize: 30),
-        ),
-        const Text(
-          "Mohamed",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-          ),
+        const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Hello,",
+              style: TextStyle(
+                color: Colors.white38,
+                fontSize: 30,
+              ),
+              textAlign: TextAlign.start,
+            ),
+            Text(
+              "Mohamed",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
         const SizedBox(
           height: 70,

@@ -15,9 +15,12 @@ class SideMenuRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
+      splashColor: Colors.green.shade300,
       child: SizedBox(
-        height: 60,
+        height: 50,
+        width: 250,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               icon,
@@ -28,7 +31,7 @@ class SideMenuRow extends StatelessWidget {
             ),
             Text(
               text,
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(fontSize: 20, color: Colors.white),
             )
           ],
         ),

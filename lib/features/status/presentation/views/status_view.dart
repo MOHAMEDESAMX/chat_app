@@ -12,28 +12,30 @@ class StatusView extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const AddStatusListTile(),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              "Recent updates,",
-              style: Style.textStyle18,
-            ),
-            const RecentUpdatesListTile(),
-            const SizedBox(
-              height: 15,
-            ),
-            Text(
-              "Viewed updates",
-              style: Style.textStyle18,
-            ),
-            const ViewedUpdatesListTile(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const AddStatusListTile(),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Recent updates,",
+                style: Style.textStyle18,
+              ),
+              const RecentUpdatesListTile(),
+              const SizedBox(
+                height: 15,
+              ),
+              Text(
+                "Viewed updates",
+                style: Style.textStyle18,
+              ),
+              const ViewedUpdatesListTile(),
+            ],
+          ),
         ),
       ),
     );

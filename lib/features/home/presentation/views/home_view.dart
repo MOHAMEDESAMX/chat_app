@@ -1,5 +1,5 @@
 import 'package:chat_app/core/themes/color_app.dart';
-import 'package:chat_app/features/auth/presentation/views/otp_page.dart';
+import 'package:chat_app/features/calls/presentation/view/calls_view.dart';
 import 'package:chat_app/features/home/presentation/views/widgets/home_app_bar.dart';
 import 'package:chat_app/features/home/presentation/views/widgets/home_body.dart';
 import 'package:chat_app/features/home/presentation/views/widgets/side_menu__view.dart';
@@ -20,8 +20,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> pagesList = [
     const HomeBody(),
     const StatusView(),
-    const OtpView(),
-    //CallsBody(),
+    const CallsView(),
   ];
   @override
   Widget build(BuildContext context) {
