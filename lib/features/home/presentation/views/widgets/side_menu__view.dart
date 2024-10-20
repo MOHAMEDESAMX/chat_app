@@ -73,7 +73,24 @@ class SideMenuView extends StatelessWidget {
                   builder: (context) => const ProfileView(),
                 ));
           },
-        )
+        ),
+        SideMenuRow(
+          icon: Icons.three_p_outlined,
+          text: "New Group",
+          onTap: () {},
+        ),
+        SideMenuRow(
+          icon: Icons.settings,
+          text: "Settings",
+          onTap: () {},
+        ),
+        SideMenuRow(
+          icon: Icons.logout,
+          text: "Logout",
+          onTap: () {
+            //Navigator.pushReplacement(context, MaterialPageRoute(builder: LoginView()));
+          },
+        ),
       ],
     );
   }

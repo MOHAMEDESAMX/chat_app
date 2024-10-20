@@ -18,10 +18,13 @@ class SideMenuRow extends StatelessWidget {
       splashColor: Colors.green.shade300,
       child: SizedBox(
         height: 50,
-        width: 250,
+        width: 300,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            const SizedBox(
+              width: 60,
+            ),
             Icon(
               icon,
               color: Colors.white,
@@ -32,7 +35,7 @@ class SideMenuRow extends StatelessWidget {
             Text(
               text,
               style: const TextStyle(fontSize: 20, color: Colors.white),
-            )
+            ),
           ],
         ),
       ),

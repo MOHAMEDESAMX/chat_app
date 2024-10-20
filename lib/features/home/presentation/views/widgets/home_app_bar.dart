@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:chat_app/core/themes/style.dart';
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
@@ -42,14 +41,14 @@ class _HomeAppBarState extends State<HomeAppBar> {
             onPressed: () {
               final state = widget.sideMenuKey.currentState;
               if (state!.isOpened) {
+                    state.closeSideMenu();
+              } else {
+                state.openSideMenu();
                 Timer(
                   const Duration(seconds: 30),
                   () {
                     state.closeSideMenu();
-                  },
-                );
-              } else {
-                state.openSideMenu();
+                  },);
               }
             },
             icon: const Icon(Icons.more_vert))

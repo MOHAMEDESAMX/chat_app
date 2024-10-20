@@ -14,7 +14,7 @@ class InboxView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.grey.shade300,
       appBar: InboxAppBar(userImage: userImage, userName: userName),
       body: const InboxBody(),
     );

@@ -1,3 +1,4 @@
+import 'package:chat_app/features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
 
 class InboxAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -56,13 +57,38 @@ class InboxAppBar extends StatelessWidget implements PreferredSizeWidget {
             color: Colors.black,
           ),
         ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.more_vert,
-            color: Colors.black,
-          ),
-        ),
+        PopupMenuButton(
+            icon: const Icon(Icons.more_vert, color: Colors.black),
+            onSelected: (value) {
+              if (value == "profile") {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfileView(),
+                  ),
+                );
+              } else if (value == "group") {
+                //Navigator.push(context, MaterialPageRoute(builder: (context) => const GroupView(),),);
+              } else if (value == "settings") {
+                //Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsView(),),);
+              }
+            },
+            itemBuilder: (context) {
+              return [
+                const PopupMenuItem(
+                  value: "profile",
+                  child: Text("Profile"),
+                ),
+                const PopupMenuItem(
+                  value: "group",
+                  child: Text("New Group"),
+                ),
+                const PopupMenuItem(
+                  value: "settings",
+                  child: Text("Settings"),
+                ),
+              ];
+            })
       ],
     );
   }

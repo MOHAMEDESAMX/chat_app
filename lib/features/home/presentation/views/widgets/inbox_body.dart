@@ -1,3 +1,4 @@
+import 'package:chat_app/core/themes/color_app.dart';
 import 'package:chat_app/features/home/presentation/views/widgets/Inbox_text_filed.dart';
 import 'package:flutter/material.dart';
 
@@ -8,12 +9,33 @@ class InboxBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(10),
+    return Padding(
+      padding: const EdgeInsets.all(8),
       child: Column(
         children: [
-          Spacer(),
-          InboxTextFiled(),
+          const Spacer(),
+          Row(
+            children: [
+              const SizedBox(
+                height: 50,
+                width: 730,
+                child: InboxTextFiled(),
+              ),
+              const Spacer(),
+              CircleAvatar(
+                radius: 23,
+                backgroundColor: ColorsApp.primaryColor,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.mic_outlined,
+                    color: Colors.white,
+                    size: 22,
+                  ),
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );
