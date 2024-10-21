@@ -1,15 +1,39 @@
 // ignore_for_file: file_names
 
+import 'package:chat_app/core/themes/color_app.dart';
 import 'package:flutter/material.dart';
 
-class InboxTextFiled extends StatelessWidget {
+class InboxTextFiled extends StatefulWidget {
   const InboxTextFiled({
-    super.key,
+    super.key, this.controller,
   });
+  final TextEditingController? controller;
+
+  @override
+  State<InboxTextFiled> createState() => _InboxTextFiledState();
+}
+
+class _InboxTextFiledState extends State<InboxTextFiled> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    widget.controller!.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    widget.controller!.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
       maxLines: null,
       keyboardType: TextInputType.multiline,
       textInputAction: TextInputAction.newline,
@@ -43,31 +67,38 @@ class InboxTextFiled extends StatelessWidget {
         hintStyle: const TextStyle(
           fontSize: 18,
         ),
-        suffixIcon: SizedBox(
-          width: 100,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
+        suffixIcon: (widget.controller!.text.isNotEmpty)
+            ? IconButton(
                 onPressed: () {},
                 icon: const Icon(
-                  Icons.attach_file_outlined,
-                  color: Colors.grey,
-                  size: 27,
+                  Icons.send,
+                  color: ColorsApp.secondaryColor,
+                ))
+            : SizedBox(
+                width: 100,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.attach_file_outlined,
+                        color: Colors.grey,
+                        size: 27,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.photo_camera,
+                        color: Colors.grey,
+                        size: 27,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.photo_camera,
-                  color: Colors.grey,
-                  size: 27,
-                ),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

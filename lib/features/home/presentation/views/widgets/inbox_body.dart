@@ -3,9 +3,10 @@ import 'package:chat_app/features/home/presentation/views/widgets/Inbox_text_fil
 import 'package:flutter/material.dart';
 
 class InboxBody extends StatelessWidget {
-  const InboxBody({
+  InboxBody({
     super.key,
   });
+  final TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +17,12 @@ class InboxBody extends StatelessWidget {
           const Spacer(),
           Row(
             children: [
-              const SizedBox(
+              SizedBox(
                 height: 50,
                 width: 730,
-                child: InboxTextFiled(),
+                child: InboxTextFiled(
+                  controller: controller,
+                ),
               ),
               const Spacer(),
               CircleAvatar(

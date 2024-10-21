@@ -1,4 +1,5 @@
 import 'package:chat_app/core/themes/color_app.dart';
+import 'package:chat_app/core/themes/style.dart';
 import 'package:chat_app/features/home/presentation/view_model/users_list.dart';
 import 'package:chat_app/features/home/presentation/views/inbox_view.dart';
 import 'package:chat_app/features/home/presentation/views/widgets/slide_page_route.dart';
@@ -20,11 +21,19 @@ class HomeBody extends StatelessWidget {
               radius: 30,
               backgroundImage: AssetImage(users[index].imageUrl),
             ),
-            title: Text(users[index].username),
-            subtitle: Text(users[index].number),
+            title: Text(
+              users[index].username,
+              style: Style.textStyle24.copyWith(fontSize: 20),
+            ),
+            subtitle: Text(
+              users[index].number,
+              style: Style.textStyle18,
+            ),
             trailing: Column(
               children: [
-                Text(users[index].time),
+                Text(
+                  users[index].time,
+                ),
                 const Spacer(),
                 CircleAvatar(
                   foregroundColor: Colors.white,
