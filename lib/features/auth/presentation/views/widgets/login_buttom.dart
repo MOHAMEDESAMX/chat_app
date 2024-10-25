@@ -17,10 +17,11 @@ class LoginButtom extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomButtom(
         onPressed: () {
-          if (!emailController.text.contains("@")) {
+          if (globalKey.currentState!.validate()){
+            if (!emailController.text.contains("@")) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                content: Text("Email is not valid"),
+                content: Text("Please enter a valid email address."),
                 backgroundColor: Colors.red,
                 duration: Duration(seconds: 3),
               ),
@@ -33,8 +34,9 @@ class LoginButtom extends StatelessWidget {
                 duration: Duration(seconds: 3),
               ),
             );
-          }else if (globalKey.currentState!.validate()) {
+          }else  {
             onSuccess();
+          }
           }
         },
         text: "Log in");

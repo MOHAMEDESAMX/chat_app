@@ -1,4 +1,5 @@
 import 'package:chat_app/core/constants/assets_images.dart';
+import 'package:chat_app/features/auth/presentation/views/login_view.dart';
 import 'package:chat_app/features/home/presentation/views/home_view.dart';
 import 'package:chat_app/features/home/presentation/views/widgets/side_menu_row.dart';
 import 'package:chat_app/features/profile/presentation/views/profile_view.dart';
@@ -88,7 +89,11 @@ class SideMenuView extends StatelessWidget {
           icon: Icons.logout,
           text: "Logout",
           onTap: () {
-            //Navigator.pushReplacement(context, MaterialPageRoute(builder: LoginView()));
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginView(),
+                ));
           },
         ),
       ],

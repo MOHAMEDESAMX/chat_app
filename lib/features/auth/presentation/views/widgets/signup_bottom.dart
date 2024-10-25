@@ -8,7 +8,8 @@ class SignupButtom extends StatelessWidget {
       required this.emailController,
       required this.phoneController,
       required this.passwordController,
-      required this.onSuccess, required this.globalKey});
+      required this.onSuccess,
+      required this.globalKey});
 
   final TextEditingController nameController;
   final TextEditingController emailController;
@@ -20,42 +21,43 @@ class SignupButtom extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomButtom(
         onPressed: () {
-          if(globalKey.currentState!.validate()){
-            onSuccess();
-          }
-          else if (nameController.text.length < 5) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("Name is too short \n at least 5 letters"),
-                backgroundColor: Colors.red,
-                duration: Duration(seconds: 3),
-              ),
-            );
-          } else if (!emailController.text.contains('@')) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("Email is not valid"),
-                backgroundColor: Colors.red,
-                duration: Duration(seconds: 3),
-              ),
-            );
-          } else if (phoneController.text.isEmpty) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("Phone can't be empty"),
-                backgroundColor: Colors.red,
-                duration: Duration(seconds: 3),
-              ),
-            );
-          } else if (passwordController.text.length < 8) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text(
-                    "Password is too short \n must be at least 8 characters"),
-                backgroundColor: Colors.red,
-                duration: Duration(seconds: 3),
-              ),
-            );
+          if (globalKey.currentState!.validate()) {
+            if (nameController.text.length < 5) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Name is too short \n at least 5 letters"),
+                  backgroundColor: Colors.red,
+                  duration: Duration(seconds: 3),
+                ),
+              );
+            } else if (!emailController.text.contains('@')) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Email is not valid"),
+                  backgroundColor: Colors.red,
+                  duration: Duration(seconds: 3),
+                ),
+              );
+            } else if (phoneController.text.isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Phone can't be empty"),
+                  backgroundColor: Colors.red,
+                  duration: Duration(seconds: 3),
+                ),
+              );
+            } else if (passwordController.text.length < 8) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                      "Password is too short \n must be at least 8 characters"),
+                  backgroundColor: Colors.red,
+                  duration: Duration(seconds: 3),
+                ),
+              );
+            } else {
+              onSuccess();
+            }
           }
         },
         text: "sign up");

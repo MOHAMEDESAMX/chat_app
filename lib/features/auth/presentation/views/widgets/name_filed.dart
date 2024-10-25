@@ -17,9 +17,6 @@ class NameFiled extends StatelessWidget {
         if (value!.isEmpty) {
           return "please enter your name";
         }
-        else if (value.length < 5) {
-          return "name is too short \n at least 5 letters";
-        }
         return null;
       },
     );
