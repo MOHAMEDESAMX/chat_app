@@ -1,5 +1,5 @@
 import 'package:chat_app/core/constants/assets_images.dart';
-import 'package:chat_app/features/home/presentation/view_model/users_model.dart';
+import 'package:chat_app/features/home/data/users_model.dart';
 
 List<UsersModel> users = [
   UsersModel(AssetsImages.me, "01282759951", "12:30 AM", "5", username: "Mohamed essam"),

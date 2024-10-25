@@ -1,6 +1,6 @@
 import 'package:chat_app/core/themes/color_app.dart';
 import 'package:chat_app/core/themes/style.dart';
-import 'package:chat_app/features/home/presentation/view_model/users_list.dart';
+import 'package:chat_app/features/home/data/users_list.dart';
 import 'package:chat_app/features/home/presentation/views/inbox_view.dart';
 import 'package:chat_app/features/home/presentation/views/widgets/slide_page_route.dart';
 import 'package:flutter/material.dart';
