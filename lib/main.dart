@@ -1,4 +1,4 @@
-import 'package:chat_app/features/home/presentation/views/home_view.dart';
+import 'package:chat_app/features/splash_screen/presentation/views/splashscreenview.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
         ),
         textTheme: GoogleFonts.interTextTheme(),
       ),
-      home: const HomePage(),
+      home: const SplashScreen(),
     );
   }
 }

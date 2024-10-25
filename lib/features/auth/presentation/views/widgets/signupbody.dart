@@ -6,7 +6,7 @@ import 'package:chat_app/features/auth/presentation/views/widgets/password_filed
 import 'package:chat_app/features/auth/presentation/views/widgets/phone_filed.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/register_row.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/signup_bottom.dart';
-import 'package:chat_app/features/home/presentation/views/home.dart';
+import 'package:chat_app/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 
 class SignupBody extends StatefulWidget {

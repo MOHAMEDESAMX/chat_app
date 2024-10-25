@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:chat_app/core/themes/style.dart';
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
@@ -28,7 +29,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
           )),
       title: Text(
         "whatsUp",
-        style: Style.textstyle20.copyWith(fontSize: 30),
+        style: Style.textStyle20.copyWith(fontSize: 30),
       ),
       actions: [
         IconButton(
@@ -41,14 +42,15 @@ class _HomeAppBarState extends State<HomeAppBar> {
             onPressed: () {
               final state = widget.sideMenuKey.currentState;
               if (state!.isOpened) {
-                    state.closeSideMenu();
+                state.closeSideMenu();
               } else {
                 state.openSideMenu();
                 Timer(
                   const Duration(seconds: 30),
                   () {
                     state.closeSideMenu();
-                  },);
+                  },
+                );
               }
             },
             icon: const Icon(Icons.more_vert))

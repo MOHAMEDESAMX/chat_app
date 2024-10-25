@@ -4,7 +4,7 @@ import 'package:chat_app/features/auth/presentation/views/widgets/login_row.dart
 import 'package:chat_app/features/auth/presentation/views/widgets/login_title.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/logo_widget.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/password_filed.dart';
-import 'package:chat_app/features/home/presentation/views/home.dart';
+import 'package:chat_app/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 
 class LoginBody extends StatefulWidget {
