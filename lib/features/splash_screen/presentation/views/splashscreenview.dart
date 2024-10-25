@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:chat_app/core/constants/assets_images.dart';
 import 'package:chat_app/core/themes/color_app.dart';
 import 'package:chat_app/core/themes/style.dart';
-import 'package:chat_app/features/home/presentation/views/home_view.dart';
+import 'package:chat_app/features/auth/presentation/views/login_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
         const Duration(seconds: 3),
         () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => const HomePage())));
+            builder: (BuildContext context) => const LoginView())));
   }
 
   @override
