@@ -1,6 +1,7 @@
 import 'package:chat_app/core/themes/color_app.dart';
 import 'package:chat_app/core/themes/style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ProfileAppBar({
@@ -21,15 +22,15 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: const Icon(
+        icon: Icon(
           Icons.arrow_back,
           color: ColorsApp.secondaryColor,
-          size: 30,
+          size: 24.r,
         ),
       ),
       title: Text(
         "Profile",
-        style: Style.textStyle24,
+        style: Style.textStyle22,
       ),
     );
   }

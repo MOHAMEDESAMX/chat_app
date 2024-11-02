@@ -1,6 +1,8 @@
 import 'package:chat_app/core/themes/color_app.dart';
 import 'package:chat_app/features/home/presentation/views/widgets/Inbox_text_filed.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class InboxBody extends StatelessWidget {
   InboxBody({
@@ -10,6 +12,7 @@ class InboxBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mywidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Column(
@@ -18,25 +21,24 @@ class InboxBody extends StatelessWidget {
           Row(
             children: [
               SizedBox(
-                height: 50,
-                width: 730,
+                width: mywidth - 62.w,
                 child: InboxTextFiled(
                   controller: controller,
                 ),
               ),
-              const Spacer(),
+              Gap(3.w),
               CircleAvatar(
-                radius: 23,
+                radius: 22.r,
                 backgroundColor: ColorsApp.primaryColor,
                 child: IconButton(
                   onPressed: () {},
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.mic_outlined,
                     color: Colors.white,
-                    size: 22,
+                    size: 20.r,
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ],

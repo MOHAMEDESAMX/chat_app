@@ -29,7 +29,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
           )),
       title: Text(
         "whatsUp",
-        style: Style.textStyle20.copyWith(fontSize: 30),
+        style: Style.textStyle22,
       ),
       actions: [
         IconButton(

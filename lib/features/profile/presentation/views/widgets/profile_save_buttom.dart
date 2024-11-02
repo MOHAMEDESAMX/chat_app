@@ -1,5 +1,7 @@
 import 'package:chat_app/core/themes/color_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class ProfileSaveButtom extends StatelessWidget {
   const ProfileSaveButtom({
@@ -11,27 +13,25 @@ class ProfileSaveButtom extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {},
       style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 15),
+        padding: EdgeInsets.symmetric(vertical: 15.r),
         backgroundColor: ColorsApp.secondaryColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(25.r),
         ),
       ),
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
             Icons.save,
             color: Colors.white,
-            size: 30,
+            size: 25.r,
           ),
-          SizedBox(
-            width: 10,
-          ),
+          Gap(10.w),
           Text(
             "Save Profile",
             style: TextStyle(
-                fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+                fontSize: 18.sp, color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ],
       ),

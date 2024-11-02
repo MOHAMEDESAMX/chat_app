@@ -1,9 +1,12 @@
 import 'dart:async';
+
 import 'package:chat_app/core/constants/assets_images.dart';
 import 'package:chat_app/core/themes/color_app.dart';
 import 'package:chat_app/core/themes/style.dart';
 import 'package:chat_app/features/auth/presentation/views/login_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -32,18 +35,18 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Image.asset(
               AssetsImages.logo,
-              width: 150,
-              height: 150,
+              width: 120.w,
+              height: 120.h,
             ),
             Text(
               "whatsUp",
               style:
                   Style.textStyle24.copyWith(color: ColorsApp.secondaryColor),
             ),
-            const SizedBox(height: 100),
+            Gap(150.h),
             Text(
               "The best chat app of this century ♥",
-              style: Style.textStyle24.copyWith(fontSize: 15),
+              style: Style.textStyle24.copyWith(fontSize: 16.sp),
             ),
           ],
         ),

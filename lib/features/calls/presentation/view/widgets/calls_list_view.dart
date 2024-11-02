@@ -1,6 +1,8 @@
 import 'package:chat_app/core/themes/color_app.dart';
 import 'package:chat_app/core/themes/style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class CallsListView extends StatelessWidget {
   const CallsListView({
@@ -20,12 +22,12 @@ class CallsListView extends StatelessWidget {
           return ListTile(
             contentPadding: EdgeInsets.zero,
             leading: CircleAvatar(
-              radius: 30,
+              radius: 40.r,
               backgroundImage: AssetImage(image),
             ),
             title: Text(
               title,
-              style: Style.textStyle24.copyWith(fontSize: 20),
+              style: Style.textStyle24.copyWith(fontSize: 18.sp),
             ),
             subtitle: Row(
               children: [
@@ -37,7 +39,7 @@ class CallsListView extends StatelessWidget {
                 ),
                 Text(
                   subTitle,
-                  style: Style.textStyle18,
+                  style: Style.textStylelabel14,
                 )
               ],
             ),
@@ -49,9 +51,7 @@ class CallsListView extends StatelessWidget {
                 )),
           );
         },
-        separatorBuilder: (context, index) => const SizedBox(
-              height: 15,
-            ),
+        separatorBuilder: (context, index) => Gap(15.h),
         itemCount: 10);
   }
 }

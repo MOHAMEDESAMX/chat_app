@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class SideMenuRow extends StatelessWidget {
   const SideMenuRow({
@@ -17,24 +19,24 @@ class SideMenuRow extends StatelessWidget {
       onTap: onTap,
       splashColor: Colors.green.shade300,
       child: SizedBox(
-        height: 50,
-        width: 300,
+        height: 50.h,
+        width: 250.w,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(
-              width: 60,
-            ),
+            Gap(60.h),
             Icon(
               icon,
               color: Colors.white,
+              size: 25.r,
             ),
-            const SizedBox(
-              width: 30,
-            ),
+            Gap(30.h),
             Text(
               text,
-              style: const TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(
+                fontSize: 16.sp,
+                color: Colors.white,
+              ),
             ),
           ],
         ),

@@ -10,17 +10,24 @@ class LoginRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Don't have an account? ",
-            style: Style.textStyle20.copyWith(color: Colors.black)),
+        Text(
+          "Don't have an account? ",
+          style: Style.textStylerow14.copyWith(color: Colors.black),
+        ),
         TextButton(
-            onPressed: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const SignupView()));
-            },
-            child: const Text(
-              "Register here",
-              style: Style.textStyle20,
-            ))
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SignupView(),
+              ),
+            );
+          },
+          child: Text(
+            "Register here",
+            style: Style.textStylerow14,
+          ),
+        )
       ],
     );
   }

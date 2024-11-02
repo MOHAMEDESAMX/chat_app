@@ -11,15 +11,15 @@ class RegisterRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text("Already have an account? ",
-            style: Style.textStyle20.copyWith(color: Colors.black)),
+            style: Style.textStylerow14.copyWith(color: Colors.black),),
         TextButton(
             onPressed: () {
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const LoginView()));
+                  MaterialPageRoute(builder: (context) => const LoginView(),),);
             },
-            child: const Text(
+            child: Text(
               "Login here",
-              style: Style.textStyle20,
+              style: Style.textStylerow14,
             ))
       ],
     );

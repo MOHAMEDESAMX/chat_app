@@ -2,10 +2,12 @@
 
 import 'package:chat_app/core/themes/color_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InboxTextFiled extends StatefulWidget {
   const InboxTextFiled({
-    super.key, this.controller,
+    super.key,
+    this.controller,
   });
   final TextEditingController? controller;
 
@@ -14,7 +16,6 @@ class InboxTextFiled extends StatefulWidget {
 }
 
 class _InboxTextFiledState extends State<InboxTextFiled> {
-
   @override
   void initState() {
     super.initState();
@@ -57,22 +58,23 @@ class _InboxTextFiledState extends State<InboxTextFiled> {
         ),
         prefixIcon: IconButton(
           onPressed: () {},
-          icon: const Icon(
+          icon: Icon(
             Icons.emoji_emotions_outlined,
             color: Colors.grey,
-            size: 27,
+            size: 24.r,
           ),
         ),
         hintText: "Message",
-        hintStyle: const TextStyle(
-          fontSize: 18,
+        hintStyle: TextStyle(
+          fontSize: 14.sp,
         ),
         suffixIcon: (widget.controller!.text.isNotEmpty)
             ? IconButton(
                 onPressed: () {},
-                icon: const Icon(
+                icon: Icon(
                   Icons.send,
                   color: ColorsApp.secondaryColor,
+                  size: 24.r,
                 ))
             : SizedBox(
                 width: 100,
@@ -82,18 +84,18 @@ class _InboxTextFiledState extends State<InboxTextFiled> {
                   children: [
                     IconButton(
                       onPressed: () {},
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.attach_file_outlined,
                         color: Colors.grey,
-                        size: 27,
+                        size: 24.r,
                       ),
                     ),
                     IconButton(
                       onPressed: () {},
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.photo_camera,
                         color: Colors.grey,
-                        size: 27,
+                        size: 24.r,
                       ),
                     ),
                   ],

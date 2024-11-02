@@ -1,5 +1,6 @@
 import 'package:chat_app/core/themes/color_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String? hintText;
@@ -21,7 +22,8 @@ class CustomTextFormField extends StatelessWidget {
       this.obscureText,
       this.validator,
       this.controller,
-      this.keyboardType, this.onPressed});
+      this.keyboardType,
+      this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -41,18 +43,17 @@ class CustomTextFormField extends StatelessWidget {
               )
             : null,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(30.r),
         ),
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: ColorsApp.secondaryColor, width: 2),
         ),
-        
         focusedErrorBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.red),
         ),
       ),
-      style: const TextStyle(
-        fontSize: 16,
+      style: TextStyle(
+        fontSize: 16.sp,
       ),
     );
   }

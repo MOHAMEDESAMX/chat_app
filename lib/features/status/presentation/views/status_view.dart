@@ -3,6 +3,8 @@ import 'package:chat_app/features/status/presentation/views/widgets/add_status_l
 import 'package:chat_app/features/status/presentation/views/widgets/recent_update_list_tile.dart';
 import 'package:chat_app/features/status/presentation/views/widgets/viewed_updates_list_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class StatusView extends StatelessWidget {
   const StatusView({super.key});
@@ -18,17 +20,13 @@ class StatusView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const AddStatusListTile(),
-              const SizedBox(
-                height: 10,
-              ),
+              Gap(10.h),
               Text(
                 "Recent updates,",
                 style: Style.textStyle18,
               ),
               const RecentUpdatesListTile(),
-              const SizedBox(
-                height: 15,
-              ),
+              Gap(15.h),
               Text(
                 "Viewed updates",
                 style: Style.textStyle18,

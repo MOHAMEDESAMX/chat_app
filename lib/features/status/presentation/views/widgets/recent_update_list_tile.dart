@@ -2,6 +2,8 @@ import 'package:chat_app/core/constants/assets_images.dart';
 import 'package:chat_app/core/themes/color_app.dart';
 import 'package:chat_app/core/themes/style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class RecentUpdatesListTile extends StatelessWidget {
   const RecentUpdatesListTile({
@@ -18,10 +20,10 @@ class RecentUpdatesListTile extends StatelessWidget {
           itemBuilder: (context, index) {
             return ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const CircleAvatar(
-                radius: 43,
+              leading: CircleAvatar(
+                radius: 43.r,
                 backgroundColor: ColorsApp.secondaryColor,
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   radius: 40,
                   backgroundImage: AssetImage(
                     AssetsImages.me,
@@ -30,7 +32,7 @@ class RecentUpdatesListTile extends StatelessWidget {
               ),
               title: Text(
                 "Mohamed essam",
-                style: Style.textStyle24.copyWith(fontSize: 20),
+                style: Style.textStyle24.copyWith(fontSize: 20.sp),
               ),
               subtitle: Text(
                 "Today, 12:00 PM",
@@ -38,9 +40,7 @@ class RecentUpdatesListTile extends StatelessWidget {
               ),
             );
           },
-          separatorBuilder: (context, index) => const SizedBox(
-                height: 10,
-              ),
+          separatorBuilder: (context, index) => Gap(10.h),
           itemCount: 7),
     );
   }

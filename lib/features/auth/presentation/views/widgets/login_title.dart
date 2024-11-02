@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 
 class LoginTitle extends StatelessWidget {
   const LoginTitle({
-    super.key, required this.text,
+    super.key,
+    required this.text,
   });
-  final String text ;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: Style.textStyle24,
+      style: Style.textStylelog22,
     );
   }
 }

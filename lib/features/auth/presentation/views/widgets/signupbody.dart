@@ -8,6 +8,8 @@ import 'package:chat_app/features/auth/presentation/views/widgets/register_row.d
 import 'package:chat_app/features/auth/presentation/views/widgets/signup_bottom.dart';
 import 'package:chat_app/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class SignupBody extends StatefulWidget {
   const SignupBody({super.key});
@@ -15,7 +17,6 @@ class SignupBody extends StatefulWidget {
   @override
   State<SignupBody> createState() => _SignupBodyState();
 }
-
 
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
@@ -34,61 +35,49 @@ class _SignupBodyState extends State<SignupBody> {
         child: Form(
           key: globalKey,
           child: SingleChildScrollView(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const LogoWidget(),
-              const SizedBox(
-                height: 20,
-              ),
-              const LoginTitle(
-                text: 'Register To New Account',
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              NameFiled(
-                nameController: nameController,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              EmailFiled(emailController: emailController),
-              const SizedBox(
-                height: 20,
-              ),
-              PhoneFiled(phoneController: phoneController),
-              const SizedBox(
-                height: 20,
-              ),
-              PasswordFiled(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const LogoWidget(),
+                const LoginTitle(
+                  text: 'Register To New Account',
+                ),
+                Gap(20.h),
+                NameFiled(
+                  nameController: nameController,
+                ),
+                Gap(15.h),
+                EmailFiled(emailController: emailController),
+                Gap(15.h),
+                PhoneFiled(phoneController: phoneController),
+                Gap(15.h),
+                PasswordFiled(
                   passwordController: passwordController,
                   isNotVisible: isNotVisible,
                   toggleVisibility: () {
                     setState(() {
                       isNotVisible = !isNotVisible;
                     });
-                  }),
-              const SizedBox(
-                height: 20,
-              ),
-              SignupButtom(
-                passwordController: passwordController,
-                emailController: emailController,
-                nameController: nameController,
-                phoneController: phoneController,
-                globalKey: globalKey,
-                onSuccess: () {
+                  },
+                ),
+                Gap(20.h),
+                SignupButtom(
+                  passwordController: passwordController,
+                  emailController: emailController,
+                  nameController: nameController,
+                  phoneController: phoneController,
+                  globalKey: globalKey,
+                  onSuccess: () {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const HomePage()));
-                },
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const RegisterRow(),
-            ]),
+                  },
+                ),
+                Gap(25.h),
+                const RegisterRow(),
+              ],
+            ),
           ),
         ),
       ),

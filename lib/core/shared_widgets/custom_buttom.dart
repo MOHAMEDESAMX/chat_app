@@ -1,6 +1,7 @@
 import 'package:chat_app/core/themes/color_app.dart';
 import 'package:chat_app/core/themes/style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButtom extends StatelessWidget {
   const CustomButtom({
@@ -14,7 +15,7 @@ class CustomButtom extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 60,
+      height: 50.h,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
             backgroundColor: ColorsApp.primaryColor,
@@ -24,8 +25,7 @@ class CustomButtom extends StatelessWidget {
             )),
         onPressed: onPressed,
         child: Center(
-          child: Text(text,
-          style: Style.textStyle24),
+          child: Text(text, style: Style.textStylebuttom15),
         ),
       ),
     );

@@ -4,6 +4,8 @@ import 'package:chat_app/features/home/presentation/views/home_view.dart';
 import 'package:chat_app/features/home/presentation/views/widgets/side_menu_row.dart';
 import 'package:chat_app/features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class SideMenuView extends StatelessWidget {
   const SideMenuView({
@@ -15,24 +17,19 @@ class SideMenuView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(
-          height: 80,
+        CircleAvatar(
+          radius: 80.r,
+          backgroundImage: const AssetImage(AssetsImages.me),
         ),
-        const CircleAvatar(
-          radius: 80,
-          backgroundImage: AssetImage(AssetsImages.me),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        const Column(
+        Gap(20.h),
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Hello,",
               style: TextStyle(
                 color: Colors.white38,
-                fontSize: 30,
+                fontSize: 25.sp,
               ),
               textAlign: TextAlign.start,
             ),
@@ -40,15 +37,13 @@ class SideMenuView extends StatelessWidget {
               "Mohamed",
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 30,
+                fontSize: 25.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ],
         ),
-        const SizedBox(
-          height: 70,
-        ),
+        Gap(50.h),
         SideMenuRow(
           icon: Icons.home,
           text: "Home",
@@ -61,18 +56,17 @@ class SideMenuView extends StatelessWidget {
             );
           },
         ),
-        const SizedBox(
-          height: 10,
-        ),
+        Gap(10.h),
         SideMenuRow(
           icon: Icons.person,
           text: "Profile",
           onTap: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ProfileView(),
-                ));
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ProfileView(),
+              ),
+            );
           },
         ),
         SideMenuRow(
@@ -90,10 +84,11 @@ class SideMenuView extends StatelessWidget {
           text: "Logout",
           onTap: () {
             Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const LoginView(),
-                ));
+              context,
+              MaterialPageRoute(
+                builder: (context) => const LoginView(),
+              ),
+            );
           },
         ),
       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DataFiled extends StatelessWidget {
   const DataFiled({
@@ -11,7 +12,7 @@ class DataFiled extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 70,
+      height: 60.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
@@ -28,8 +29,8 @@ class DataFiled extends StatelessWidget {
           fillColor: Colors.white,
           label: Text(
             text,
-            style: const TextStyle(
-              fontSize: 20,
+            style: TextStyle(
+              fontSize: 16.sp,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
@@ -37,9 +38,9 @@ class DataFiled extends StatelessWidget {
           enabled: false,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
-            borderSide: const BorderSide(
+            borderSide:  BorderSide(
               color: Colors.grey,
-              width: 2,
+              width: 2.w,
             ),
           ),
         ),

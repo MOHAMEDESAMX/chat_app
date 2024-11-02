@@ -6,6 +6,8 @@ import 'package:chat_app/features/auth/presentation/views/widgets/logo_widget.da
 import 'package:chat_app/features/auth/presentation/views/widgets/password_filed.dart';
 import 'package:chat_app/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class LoginBody extends StatefulWidget {
   const LoginBody({super.key});
@@ -29,49 +31,42 @@ class _LoginBodyState extends State<LoginBody> {
         child: Form(
           key: globalKey,
           child: SingleChildScrollView(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const LogoWidget(),
-              const SizedBox(
-                height: 20,
-              ),
-              const LoginTitle(
-                text: 'Log in to your account',
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              EmailFiled(emailController: emailController),
-              const SizedBox(
-                height: 20,
-              ),
-              PasswordFiled(
-                  passwordController: passwordController,
-                  isNotVisible: isNotVisible,
-                  toggleVisibility: () {
-                    setState(() {
-                      isNotVisible = !isNotVisible;
-                    });
-                  }),
-              const SizedBox(
-                height: 20,
-              ),
-              LoginButtom(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const LogoWidget(),
+                const LoginTitle(
+                  text: 'Log in to your account',
+                ),
+                Gap(20.h),
+                EmailFiled(emailController: emailController),
+                Gap(15.h),
+                PasswordFiled(
+                    passwordController: passwordController,
+                    isNotVisible: isNotVisible,
+                    toggleVisibility: () {
+                      setState(() {
+                        isNotVisible = !isNotVisible;
+                      });
+                    }),
+                Gap(20.h),
+                LoginButtom(
                   emailController: emailController,
                   passwordController: passwordController,
                   globalKey: globalKey,
                   onSuccess: () {
                     Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomePage()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomePage(),
+                      ),
+                    );
                   },
-                  ),
-              const SizedBox(
-                height: 20,
-              ),
-              const LoginRow(),
-            ]),
+                ),
+                Gap(25.h),
+                const LoginRow(),
+              ],
+            ),
           ),
         ),
       ),

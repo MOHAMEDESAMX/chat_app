@@ -1,6 +1,8 @@
 import 'package:chat_app/core/constants/assets_images.dart';
 import 'package:chat_app/core/themes/style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class ViewedUpdatesListTile extends StatelessWidget {
   const ViewedUpdatesListTile({
@@ -37,9 +39,7 @@ class ViewedUpdatesListTile extends StatelessWidget {
               ),
             );
           },
-          separatorBuilder: (context, index) => const SizedBox(
-                height: 10,
-              ),
+          separatorBuilder: (context, index) => Gap(10.h),
           itemCount: 5),
     );
   }
