@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 void main() {
   runApp(const MyApp());
 }
-//check
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
