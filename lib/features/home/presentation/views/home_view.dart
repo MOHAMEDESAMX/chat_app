@@ -42,25 +42,25 @@ class _HomePageState extends State<HomePage> {
             });
           },
           currentIndex: myIndex,
-          items: const [
+          items: [
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.chat,
-                color: ColorsApp.secondaryColor,
+                color: myIndex == 0 ? ColorsApp.secondaryColor : Colors.grey,
               ),
               label: "Chats",
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.tips_and_updates,
-                color: ColorsApp.secondaryColor,
+                color: myIndex == 1 ? ColorsApp.secondaryColor : Colors.grey,
               ),
               label: "Status",
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.call,
-                color: ColorsApp.secondaryColor,
+                color: myIndex == 2 ? ColorsApp.secondaryColor : Colors.grey,
               ),
               label: "Calls",
             ),
