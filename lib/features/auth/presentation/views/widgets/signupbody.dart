@@ -1,4 +1,5 @@
 import 'package:chat_app/core/services/auth_services.dart';
+import 'package:chat_app/features/auth/presentation/views/login_view.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/email_filed.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/login_title.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/logo_widget.dart';
@@ -7,7 +8,7 @@ import 'package:chat_app/features/auth/presentation/views/widgets/password_filed
 import 'package:chat_app/features/auth/presentation/views/widgets/phone_filed.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/register_row.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/signup_bottom.dart';
-import 'package:chat_app/features/home/presentation/views/home_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -97,16 +98,17 @@ signupOperation(context) async {
   final user = await auth.createUserWithEmailAndPassword(
       emailController.text, passwordController.text, context);
   if (user != null) {
+    FirebaseAuth.instance.currentUser!.sendEmailVerification();
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text("Account created successfully!"),
+        content: Text("Email verification sent."),
         backgroundColor: Colors.green,
         duration: Duration(seconds: 3),
       ),
     );
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (BuildContext context) => const HomePage(),
+        builder: (BuildContext context) => const LoginView(),
       ),
     );
   }
