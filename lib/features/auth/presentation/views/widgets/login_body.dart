@@ -1,12 +1,14 @@
 import 'package:chat_app/core/services/auth_services.dart';
+import 'package:chat_app/core/themes/style.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/email_filed.dart';
+import 'package:chat_app/features/auth/presentation/views/widgets/forget_password_view.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/login_buttom.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/login_row.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/login_title.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/logo_widget.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/password_filed.dart';
-import 'package:chat_app/features/auth/presentation/views/widgets/signupbody.dart';
 import 'package:chat_app/features/home/presentation/views/home_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -20,11 +22,11 @@ class LoginBody extends StatefulWidget {
 
 bool isNotVisible = true;
 
-class _LoginBodyState extends State<LoginBody> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final globalKey = GlobalKey<FormState>();
+TextEditingController emailController = TextEditingController();
+TextEditingController passwordController = TextEditingController();
 
+class _LoginBodyState extends State<LoginBody> {
+  final globalKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -51,6 +53,22 @@ class _LoginBodyState extends State<LoginBody> {
                         isNotVisible = !isNotVisible;
                       });
                     }),
+                Container(
+                    margin: const EdgeInsets.only(top: 10, bottom: 20),
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      child: Text(
+                        'Forgot Password?',
+                        style: Style.textStylerow14,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ForgetPasswordView(
+                            emailController: emailController,
+                          ),
+                        ));
+                      },
+                    )),
                 Gap(20.h),
                 LoginButtom(
                   emailController: emailController,
@@ -58,7 +76,7 @@ class _LoginBodyState extends State<LoginBody> {
                   globalKey: globalKey,
                   onSuccess: () async {
                     if (globalKey.currentState!.validate()) {
-                      loginOperation(context);
+                      await loginOperation(context);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
@@ -81,22 +99,61 @@ class _LoginBodyState extends State<LoginBody> {
   }
 }
 
-loginOperation(context) async {
+Future<void> loginOperation(context) async {
   final auth = AuthServices();
-  final user = await auth.signInWithEmailAndPassword(
-      emailController.text, passwordController.text, context);
-  if (user != null) {
+
+  if (!isValidEmail(emailController.text)) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text("logged in successfully!"),
-        backgroundColor: Colors.green,
+        content: Text("Please enter a valid email address."),
+        backgroundColor: Colors.red,
         duration: Duration(seconds: 3),
       ),
     );
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (BuildContext context) => const HomePage(),
+    return;
+  }
+
+  final user = await auth.signInWithEmailAndPassword(
+      emailController.text, passwordController.text, context);
+  FirebaseAuth.instance.currentUser!.sendEmailVerification();
+  if (user != null) {
+    if (!user.emailVerified) {
+      await user.sendEmailVerification();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+              "Please verify your email. A verification email has been sent."),
+          backgroundColor: Colors.orange,
+          duration: Duration(seconds: 3),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Logged in successfully!"),
+          backgroundColor: Colors.green,
+          duration: Duration(seconds: 3),
+        ),
+      );
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (BuildContext context) => const HomePage(),
+        ),
+      );
+    }
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content:
+            Text("Login failed. Please check your credentials and try again."),
+        backgroundColor: Colors.red,
+        duration: Duration(seconds: 3),
       ),
     );
   }
+}
+
+bool isValidEmail(String email) {
+  final emailRegExp = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
+  return emailRegExp.hasMatch(email);
 }

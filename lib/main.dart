@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-  bool loged = false;
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -17,10 +16,8 @@ void main() async{
   FirebaseAuth.instance.authStateChanges().listen((User? user) {
     if (user == null) {
       log('User is currently signed out!');
-      loged =false;
     } else {
       log('User is signed in!');
-      loged =true;
     }
   });
 }
@@ -52,7 +49,7 @@ class _MyAppState extends State<MyApp> {
         ),
         textTheme: GoogleFonts.interTextTheme(),
       ),
-      home: (loged)? const HomePage() : const SplashScreen(),
+      home: (FirebaseAuth.instance.currentUser != null&&FirebaseAuth.instance.currentUser!.emailVerified)? const HomePage() : const SplashScreen(),
     );
   });
 }}
