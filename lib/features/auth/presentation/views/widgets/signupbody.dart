@@ -1,3 +1,4 @@
+import 'package:chat_app/core/services/auth_services.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/email_filed.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/login_title.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/logo_widget.dart';
@@ -62,24 +63,50 @@ class _SignupBodyState extends State<SignupBody> {
                 ),
                 Gap(20.h),
                 SignupButtom(
-                  passwordController: passwordController,
-                  emailController: emailController,
-                  nameController: nameController,
-                  phoneController: phoneController,
-                  globalKey: globalKey,
-                  onSuccess: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomePage()));
-                  },
-                ),
+                    passwordController: passwordController,
+                    emailController: emailController,
+                    nameController: nameController,
+                    phoneController: phoneController,
+                    globalKey: globalKey,
+                    onSuccess: () async {
+                      if (globalKey.currentState!.validate()) {
+                        signupOperation(context);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Please fill all fields correctly."),
+                            backgroundColor: Colors.orange,
+                            duration: Duration(seconds: 3),
+                          ),
+                        );
+                      }
+                    }),
                 Gap(25.h),
                 const RegisterRow(),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+signupOperation(context) async {
+  final auth = AuthServices();
+  final user = await auth.createUserWithEmailAndPassword(
+      emailController.text, passwordController.text, context);
+  if (user != null) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Account created successfully!"),
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 3),
+      ),
+    );
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (BuildContext context) => const HomePage(),
       ),
     );
   }

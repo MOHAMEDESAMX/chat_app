@@ -1,9 +1,11 @@
+import 'package:chat_app/core/services/auth_services.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/email_filed.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/login_buttom.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/login_row.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/login_title.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/logo_widget.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/password_filed.dart';
+import 'package:chat_app/features/auth/presentation/views/widgets/signupbody.dart';
 import 'package:chat_app/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,13 +56,18 @@ class _LoginBodyState extends State<LoginBody> {
                   emailController: emailController,
                   passwordController: passwordController,
                   globalKey: globalKey,
-                  onSuccess: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const HomePage(),
-                      ),
-                    );
+                  onSuccess: () async {
+                    if (globalKey.currentState!.validate()) {
+                      loginOperation(context);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Please fill all fields correctly."),
+                          backgroundColor: Colors.orange,
+                          duration: Duration(seconds: 3),
+                        ),
+                      );
+                    }
                   },
                 ),
                 Gap(25.h),
@@ -69,6 +76,26 @@ class _LoginBodyState extends State<LoginBody> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+loginOperation(context) async {
+  final auth = AuthServices();
+  final user = await auth.signInWithEmailAndPassword(
+      emailController.text, passwordController.text, context);
+  if (user != null) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("logged in successfully!"),
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 3),
+      ),
+    );
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (BuildContext context) => const HomePage(),
       ),
     );
   }

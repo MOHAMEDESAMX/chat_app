@@ -1,4 +1,5 @@
 import 'package:chat_app/core/constants/assets_images.dart';
+import 'package:chat_app/core/services/auth_services.dart';
 import 'package:chat_app/features/auth/presentation/views/login_view.dart';
 import 'package:chat_app/features/home/presentation/views/home_view.dart';
 import 'package:chat_app/features/home/presentation/views/widgets/side_menu_row.dart';
@@ -8,10 +9,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class SideMenuView extends StatelessWidget {
-  const SideMenuView({
+  SideMenuView({
     super.key,
   });
-
+  final user = AuthServices();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -83,6 +84,7 @@ class SideMenuView extends StatelessWidget {
           icon: Icons.logout,
           text: "Logout",
           onTap: () {
+            user.signout();
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(

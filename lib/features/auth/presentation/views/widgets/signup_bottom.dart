@@ -50,7 +50,7 @@ class SignupButtom extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   content: Text(
-                      "Password is too short \n must be at least 8 characters"),
+                      "Password is too weak \n must be at least 8 characters"),
                   backgroundColor: Colors.red,
                   duration: Duration(seconds: 3),
                 ),

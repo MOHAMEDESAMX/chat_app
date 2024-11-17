@@ -18,6 +18,32 @@ class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _HomeAppBarState extends State<HomeAppBar> {
+  Timer? _menuCloseTimer;
+
+  @override
+  void dispose() {
+    _menuCloseTimer?.cancel();
+    super.dispose();
+  }
+
+  void toggleSideMenu() {
+    final state = widget.sideMenuKey.currentState;
+    if (state!.isOpened) {
+      state.closeSideMenu();
+      _menuCloseTimer?.cancel();
+    } else {
+      state.openSideMenu();
+      _menuCloseTimer = Timer(
+        const Duration(seconds: 30),
+        () {
+          if (mounted) {
+            state.closeSideMenu();
+          }
+        },
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -38,22 +64,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
               Icons.search,
               color: Colors.black,
             )),
-        IconButton(
-            onPressed: () {
-              final state = widget.sideMenuKey.currentState;
-              if (state!.isOpened) {
-                state.closeSideMenu();
-              } else {
-                state.openSideMenu();
-                Timer(
-                  const Duration(seconds: 30),
-                  () {
-                    state.closeSideMenu();
-                  },
-                );
-              }
-            },
-            icon: const Icon(Icons.more_vert))
+        IconButton(onPressed: toggleSideMenu, icon: const Icon(Icons.more_vert))
       ],
     );
   }
