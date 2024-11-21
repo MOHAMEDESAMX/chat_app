@@ -18,7 +18,7 @@ abstract class Style {
     color: ColorsApp.primaryColor,
   );
   static TextStyle textStylerow14 = TextStyle(
-    fontSize: 14.sp,
+    fontSize: 13.sp,
     fontWeight: FontWeight.bold,
     color: ColorsApp.primaryColor,
   );

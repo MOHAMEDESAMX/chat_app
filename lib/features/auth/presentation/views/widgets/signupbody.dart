@@ -1,4 +1,5 @@
 import 'package:chat_app/core/services/auth_services.dart';
+import 'package:chat_app/core/services/firestore_services.dart';
 import 'package:chat_app/features/auth/presentation/views/login_view.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/email_filed.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/login_title.dart';
@@ -95,10 +96,12 @@ class _SignupBodyState extends State<SignupBody> {
 
 signupOperation(context) async {
   final auth = AuthServices();
+  final addeduser = FirestoreServices();
   final user = await auth.createUserWithEmailAndPassword(
       emailController.text, passwordController.text, context);
   if (user != null) {
     FirebaseAuth.instance.currentUser!.sendEmailVerification();
+    addeduser.addUser(nameController.text, emailController.text, FirebaseAuth.instance.currentUser!.uid, "", phoneController.text);
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text("Email verification sent."),

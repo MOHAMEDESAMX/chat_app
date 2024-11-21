@@ -30,25 +30,28 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              AssetsImages.logo,
-              width: 120.w,
-              height: 120.h,
-            ),
-            Text(
-              "whatsUp",
-              style:
-                  Style.textStyle24.copyWith(color: ColorsApp.secondaryColor),
-            ),
-            Gap(150.h),
-            Text(
-              "The best chat app of this century ♥",
-              style: Style.textStyle24.copyWith(fontSize: 16.sp),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                AssetsImages.logo,
+                width: 120.w,
+                height: 120.h,
+              ),
+              Text(
+                "whatsUp",
+                style:
+                    Style.textStyle24.copyWith(color: ColorsApp.secondaryColor),
+              ),
+              Gap(150.h),
+              Text(
+                "The best chat app of this century",
+                style: Style.textStyle24.copyWith(fontSize: 16.sp),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -3,14 +3,34 @@ import 'package:chat_app/core/themes/style.dart';
 import 'package:chat_app/features/home/data/users_list.dart';
 import 'package:chat_app/features/home/presentation/views/inbox_view.dart';
 import 'package:chat_app/features/home/presentation/views/widgets/slide_page_route.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-class HomeBody extends StatelessWidget {
+class HomeBody extends StatefulWidget {
   const HomeBody({
     super.key,
   });
+
+  @override
+  State<HomeBody> createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
+  List<QueryDocumentSnapshot> usersData = [];
+  getUsersData() async {
+    QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection("users").get();
+    usersData.addAll(querySnapshot.docs);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    getUsersData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +44,11 @@ class HomeBody extends StatelessWidget {
               backgroundImage: AssetImage(users[index].imageUrl),
             ),
             title: Text(
-              users[index].username,
+              "${usersData[index]["name"]}",
               style: Style.textStyleusername18,
             ),
             subtitle: Text(
-              users[index].number,
+              "${{usersData[index]["phone"]}}",
               style: Style.textStyle14,
             ),
             trailing: Column(
@@ -51,7 +71,7 @@ class HomeBody extends StatelessWidget {
                 SlidePageRoute(
                   page: InboxView(
                     userImage: users[index].imageUrl,
-                    userName: users[index].username,
+                    userName: "${usersData[index]["name"]}",
                   ),
                 ),
               );
@@ -59,12 +79,15 @@ class HomeBody extends StatelessWidget {
           );
         },
         separatorBuilder: (context, index) => Gap(10.h),
-        itemCount: users.length,
+        itemCount: usersData.length,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: ColorsApp.secondaryColor,
-        child: const Icon(Icons.chat,color: Colors.white,),
+        child: const Icon(
+          Icons.chat,
+          color: Colors.white,
+        ),
       ),
     );
   }
