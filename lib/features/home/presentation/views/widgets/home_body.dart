@@ -19,10 +19,12 @@ class HomeBody extends StatefulWidget {
 
 class _HomeBodyState extends State<HomeBody> {
   List<QueryDocumentSnapshot> usersData = [];
+  bool isloading = true;
   getUsersData() async {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection("users").get();
     usersData.addAll(querySnapshot.docs);
+    isloading = false;
     setState(() {});
   }
 
@@ -35,52 +37,54 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.separated(
-        scrollDirection: Axis.vertical,
-        itemBuilder: (context, index) {
-          return ListTile(
-            leading: CircleAvatar(
-              radius: 30.r,
-              backgroundImage: AssetImage(users[index].imageUrl),
-            ),
-            title: Text(
-              "${usersData[index]["name"]}",
-              style: Style.textStyleusername18,
-            ),
-            subtitle: Text(
-              "${{usersData[index]["phone"]}}",
-              style: Style.textStyle14,
-            ),
-            trailing: Column(
-              children: [
-                Text(
-                  users[index].time,
-                ),
-                const Spacer(),
-                CircleAvatar(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.green,
-                  radius: 13.r,
-                  child: Text(users[index].notificatonNumber),
-                ),
-              ],
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                SlidePageRoute(
-                  page: InboxView(
-                    userImage: users[index].imageUrl,
-                    userName: "${usersData[index]["name"]}",
+      body: isloading
+          ? const Center(child: CircularProgressIndicator())
+          : ListView.separated(
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: CircleAvatar(
+                    radius: 30.r,
+                    backgroundImage: AssetImage(users[index].imageUrl),
                   ),
-                ),
-              );
-            },
-          );
-        },
-        separatorBuilder: (context, index) => Gap(10.h),
-        itemCount: usersData.length,
-      ),
+                  title: Text(
+                    "${usersData[index]["name"]}",
+                    style: Style.textStyleusername18,
+                  ),
+                  subtitle: Text(
+                    "${{usersData[index]["phone"]}}",
+                    style: Style.textStyle14,
+                  ),
+                  trailing: Column(
+                    children: [
+                      Text(
+                        users[index].time,
+                      ),
+                      const Spacer(),
+                      CircleAvatar(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.green,
+                        radius: 13.r,
+                        child: Text(users[index].notificatonNumber),
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      SlidePageRoute(
+                        page: InboxView(
+                          userImage: users[index].imageUrl,
+                          userName: "${usersData[index]["name"]}",
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+              separatorBuilder: (context, index) => Gap(10.h),
+              itemCount: usersData.length,
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: ColorsApp.secondaryColor,
