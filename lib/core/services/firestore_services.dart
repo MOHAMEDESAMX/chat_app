@@ -7,22 +7,33 @@ class FirestoreServices {
 
   Future<void> addUser(String name, String email, String uid, String imageUrl,
       String phone) async {
-    await users
-        .add({
-          "name": name,
-          "email": email,
-          "uid": uid,
-          "imageUrl": imageUrl,
-          "phone": phone
-        })
-        .then((value) => log("user added"))
-        .catchError((error) => log("Failed to add user: $error"));
+    try {
+      await users
+          .doc(uid)
+          .set({
+            "name": name,
+            "email": email,
+            "uid": uid,
+            "imageUrl": imageUrl,
+            "phone": phone
+          })
+          .then((value) => log("User added or updated"))
+          .catchError((error) => log("Failed to add user: $error"));
+    } catch (e) {
+      log("Error adding user: $e");
+    }
   }
 
   static Future<List<QueryDocumentSnapshot<Object?>>> getUsersData() async {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection("users").get();
-    List<QueryDocumentSnapshot> usersData =[];
-    usersData.addAll(querySnapshot.docs);
-    return usersData;
+    try {
+      QuerySnapshot querySnapshot =
+          await FirebaseFirestore.instance.collection("users").get();
+      List<QueryDocumentSnapshot> usersData = [];
+      usersData.addAll(querySnapshot.docs);
+      return usersData;
+    } catch (e) {
+      log("Error getting users data: $e");
+      return [];
+    }
   }
 }

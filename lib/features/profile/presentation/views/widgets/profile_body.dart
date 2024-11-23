@@ -1,15 +1,52 @@
+import 'dart:developer';
+
 import 'package:chat_app/core/themes/style.dart';
 import 'package:chat_app/features/profile/presentation/views/widgets/data_filed.dart';
 import 'package:chat_app/features/profile/presentation/views/widgets/profile_image.dart';
 import 'package:chat_app/features/profile/presentation/views/widgets/profile_save_buttom.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-class ProfileBody extends StatelessWidget {
+class ProfileBody extends StatefulWidget {
   const ProfileBody({
     super.key,
   });
+
+  @override
+  State<ProfileBody> createState() => _ProfileBodyState();
+}
+
+class _ProfileBodyState extends State<ProfileBody> {
+  Map<String, dynamic>? currentuUerData;
+  getCurrentUserData() async {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      String uid = currentUser.uid;
+      DocumentSnapshot userDoc =
+          await FirebaseFirestore.instance.collection("users").doc(uid).get();
+      if (userDoc.exists) {
+        var userData = userDoc.data() as Map<String, dynamic>?;
+        log(userData.toString());
+        setState(() {
+          currentuUerData = userData;
+        });
+      } else {
+        log("No data found for the current user");
+      }
+    } else {
+      log("No user is logged in");
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUserData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -28,8 +65,10 @@ class ProfileBody extends StatelessWidget {
                 style: Style.textStylelabel14,
               ),
               Gap(5.h),
-              const DataFiled(
-                text: "Mohamed Essam",
+              DataFiled(
+                text: currentuUerData != null
+                    ? currentuUerData!['name']?.split(' ').first ?? 'Guest'
+                    : 'Loading...',
               ),
               Gap(25.h),
               Text(
@@ -37,7 +76,7 @@ class ProfileBody extends StatelessWidget {
                 style: Style.textStylelabel14,
               ),
               Gap(5.h),
-              const DataFiled(text: "+01282759951"),
+              DataFiled(text: currentuUerData!['phone']),
               Gap(25.h),
               const ProfileSaveButtom()
             ],

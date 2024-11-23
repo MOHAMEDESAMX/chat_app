@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       key: sideMenuKey,
       type: SideMenuType.slideNRotate,
       inverse: true,
-      menu: SideMenuView(),
+      menu: const SideMenuView(),
       child: Scaffold(
         appBar: HomeAppBar(
           sideMenuKey: sideMenuKey,
