@@ -92,6 +92,8 @@ class _LoginBodyState extends State<LoginBody> {
                             isloading = false;
                             setState(() {});
                           } else {
+                            isloading = false;
+                            setState(() {});
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content:

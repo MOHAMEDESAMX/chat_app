@@ -88,6 +88,8 @@ class _SignupBodyState extends State<SignupBody> {
                               isloading = false;
                               setState(() {});
                             } else {
+                              isloading = false;
+                              setState(() {});
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content:
