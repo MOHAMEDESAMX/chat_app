@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DataFiled extends StatelessWidget {
-  const DataFiled({
+class EditDataFiled extends StatelessWidget {
+  const EditDataFiled({
     super.key,
-    required this.text, required this.enabled,
+    required this.enabled,
+    required this.controller, required this.text,
   });
-  final String text;
   final bool enabled;
-
+    final String text;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,7 @@ class DataFiled extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        controller: controller,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,
@@ -40,7 +42,7 @@ class DataFiled extends StatelessWidget {
           enabled: enabled,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
-            borderSide:  BorderSide(
+            borderSide: BorderSide(
               color: Colors.grey,
               width: 2.w,
             ),
